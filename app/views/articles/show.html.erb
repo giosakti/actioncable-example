@@ -13,10 +13,12 @@
 Comments:
 <br />
 
-<% @article.comments.each do |comment| %>
-  <%= comment.body %> - <b><%= comment.user.email %></b>
-  <br />
-<% end %>
+<section id="comments" data-channel="comments" data-article-id="<%= @article.id %>">
+  <% @article.comments.each do |comment| %>
+    <%= comment.body %> - <b><%= comment.user.email %></b>
+    <br />
+  <% end %>
+</section>
 
 <%= form_for(Comment.new) do |f| %>
   <%= f.hidden_field :article_id, :value => @article.id %>

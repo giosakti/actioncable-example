@@ -31,6 +31,9 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
+        ActionCable.server.broadcast "articles:#{@comment.article_id}:comments",
+          comment_body: @comment.body,
+          user_email: @comment.user.email
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
