@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @article.body %>
+</p>
+
+Comments:
+<br />
+
+<section id="comments" data-channel="comments" data-article-id="<%= @article.id %>">
+  <% @article.comments.each do |comment| %>
+    <%= comment.body %> - <b><%= comment.user.email %></b>
+    <br />
+  <% end %>
+</section>
+
+<%= form_for(Comment.new) do |f| %>
+  <%= f.hidden_field :article_id, :value => @article.id %>
+  <%= f.text_area :body %>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
