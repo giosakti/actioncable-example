@@ -21,6 +21,18 @@
     <%= f.text_area :body %>
   </div>
 
+  <%= f.fields_for :answers do |builder| %>
+    <div class="field">
+      <%= builder.label :order %><br/>
+      <%= builder.text_field :order %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :title %><br/>
+      <%= builder.text_field :title %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
