@@ -19,5 +19,20 @@
   <p><%= button_to 'Vote', votes_path, params: {answer_id: answer.id} %></p>
 <% end %>
 
+<div data-channel="question_comments" data-question-id="<%= @question.id %>">
+  <div class="stream">
+    <% @question.question_comments.each do |question_comment| %>
+      <%= "#{question_comment.username}: #{question_comment.body}" %><br />
+    <% end %>
+  </div>
+
+  <div class="new_question_comment">
+    <div class="field">
+      <%= label :question_comment, :body %>
+      <%= text_field :question_comment, :body %>
+    </div>
+  </div>
+</div>
+
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
