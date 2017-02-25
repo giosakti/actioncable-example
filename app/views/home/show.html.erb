@@ -1,0 +1,14 @@
+<% if @username.present? %>
+  Halo <%= @username %>, Silahkan lanjut ke <%= link_to 'Voting', questions_path %> atau <%= link_to "Logout", "/logout", method: :post %>
+<% else %>
+  <%= form_tag "/login" do %>
+    <div class="field">
+      <%= label :login, :username %>
+      <%= text_field :login, :username, value: @username %>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag "Login" %>
+    </div>
+  <% end %>
+<% end %>

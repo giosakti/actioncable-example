@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post '/login', to: 'home#login'
+  post '/logout', to: 'home#logout'
   resources :questions
-  root to: "questions#index"
+  root to: "home#show"
 end
