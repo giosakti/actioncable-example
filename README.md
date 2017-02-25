@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run this application you just have to run this:
 
-Things you may want to cover:
+```
+rake db:create db:migrate
+rails s -b 0.0.0.0
+```
 
-* Ruby version
+Voila! then you can access it on http://localhost:3000
 
-* System dependencies
+## Steps executed when building this application
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+gem install rails
+rails new id_ruby_vote
+rails g scaffold question title:string body:text
+rails g channel question
+rails g model question_comment
+rails g controller question_comments
+rails g channel question_comment
+```
