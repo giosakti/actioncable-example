@@ -6,12 +6,8 @@ class VotesController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     @vote = Vote.new(answer_id: @answer.id, username: session[:username])
 
-    respond_to do |format|
-      if @vote.save
-        format.html { redirect_to @answer.question, notice: 'Vote was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @vote.save
+      ActionCable.server.broadcast "question_channel", answer_id: @vote.answer_id, votes_count: @vote.answer.votes.count
     end
   end
 

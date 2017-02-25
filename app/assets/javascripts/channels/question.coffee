@@ -6,5 +6,4 @@ App.question = App.cable.subscriptions.create "QuestionChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    # Called when there's incoming data on the websocket for this channel
-
+    $("#answer_#{data['answer_id']}_votes_count").html("#{data['votes_count']}")
