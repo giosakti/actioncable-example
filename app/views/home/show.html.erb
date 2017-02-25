@@ -1,0 +1,36 @@
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="row">
+  <% if @username.present? %>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <h2 class="text-center">
+        Halo <%= @username %>, Silahkan <%= link_to 'masuk', questions_path %> atau <%= link_to "Logout", "/logout", method: :post %>
+      </h2>
+    </div>
+  <% else %>
+    <div class="col-sm-5"></div>
+    <div class="col-sm-4">
+      <%= form_tag "/login" do %>
+        <div class="row">
+          <div class="form-group">
+            <%= label :login, "Please input username" %>
+            <%= text_field :login, :username, value: @username, class: "form-control input-lg" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="text-right">
+            <%= submit_tag "login", class: "btn btn-lg btn-default" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
