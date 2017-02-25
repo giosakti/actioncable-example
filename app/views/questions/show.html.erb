@@ -12,6 +12,10 @@
 
 <% @question.answers.each do |answer| %>
   <p><%= answer.title %></p>
+  <p>Jumlah vote: <%= answer.votes.count %></p>
+  <% unless answer.votes.collect(&:username).include? current_user %>
+    <p><%= button_to 'Vote', votes_path, params: {answer_id: answer.id} %></p>
+  <% end %>
 <% end %>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |
