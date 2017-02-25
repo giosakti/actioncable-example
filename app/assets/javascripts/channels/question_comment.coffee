@@ -1,4 +1,7 @@
 $ ->
+  if $(".stream").length > 0
+    $(".stream").scrollTop($(".stream")[0].scrollHeight + 1);
+
   id = $("[data-channel='question_comments']").data("question-id")
   App.question_comment = App.cable.subscriptions.create {channel: "QuestionCommentChannel", question_id: id},
     connected: ->
@@ -9,6 +12,7 @@ $ ->
 
     received: (data) ->
       $("[data-channel='question_comments'] .stream").append("#{data.username}: #{data.body}<br />")
+      $(".stream").scrollTop($(".stream")[0].scrollHeight + 1);
 
 $(document).on 'keypress', '[data-channel=\'question_comments\'] .new_question_comment', (event) ->
   if event.keyCode is 13 # return/enter = send
